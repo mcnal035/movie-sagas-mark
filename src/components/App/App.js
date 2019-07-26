@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MovieGallery from '../MovieGallery/MovieGallery'
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Empty Page</p>
+        <MovieGallery />
       </div>
     );
   }

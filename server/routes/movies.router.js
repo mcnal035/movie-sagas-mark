@@ -45,15 +45,16 @@ router.get('/genres', (req, res) => {
     })
 })
 
-// router.put('/details')
+// router.put('/details') TODO its not working right now. I need to get the sql text put to work. 
 router.put('/details/:id', (req, res) =>{
-    let update = req.params.id;
-    let detailId = req.body.id;
+    console.log('req.params.id', req.params.id,'req.body.id', req.body ) //req.body[{ id: 1, title: 'xzc', description: 'cxv' }] make sure that you'll put this in an array
+    let update = req.params;
+    let detailId = [req.body.id]; // the id for the movie
     const sqlText = `UPDATE "movies" 
     SET 
          "movies"."description" = $1
          "movies"."title" = $2
-    WHERE movies.id= $3;`;
+    WHERE movies.id = $3;`;
     const values = [update, detailId]
     pool.query(sqlText, values).then( (response) => {
             res.sendStatus(200);

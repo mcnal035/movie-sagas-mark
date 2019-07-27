@@ -43,7 +43,7 @@ function* fetchDescription (action) {
 function* updateDetails (action) {
     try{
         console.log('action.payload', action.payload);
-        yield axios.put(`/movies/update/${action.payload.id}`, action.payload)
+        yield axios.put(`/movies/details/${action.payload.id}`, action.payload)
         yield put({ type: 'FETCH_MOVIES'})
     } catch (error) {
         console.log('error in updateDetails', error);

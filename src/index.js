@@ -15,6 +15,8 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
+    yield takeEvery('SEND_ID', fetchDescription);
+    yield takeEvery('UPDATE_DETAILS', updateDetails);
 
 }
 
@@ -25,6 +27,27 @@ function* fetchMovies () {
  } catch (error) {
      console.lof('error getting movies', error);
  }
+}
+
+function* fetchDescription (action) {
+    try {
+        console.log('action.payload', action.payload );
+        const response = yield axios.get(`/movies/details/${action.payload}`);
+        yield put({ type: 'SET_DETAILS', payload: response.data})
+    } catch (error ){
+        console.log('error getting movie desciption', error);
+    }
+}
+
+
+function* updateDetails (action) {
+    try{
+        console.log('action.payload', action.payload);
+        yield axios.put(`/movies/update/${action.payload.id}`, action.payload)
+        yield put({ type: 'FETCH_MOVIES'})
+    } catch (error) {
+        console.log('error in updateDetails', error);
+    }
 }
 
 // Create sagaMiddleware
@@ -50,11 +73,32 @@ const genreList = (state = [], action) => {
     }
 }
 
+const setDescription = (state={}, action) =>{
+    switch(action.type) {
+        case 'SET_DETAILS':
+            return action.payload;
+            default:
+                return state;
+    }
+}
+//UPDATE_DETAILS stores edited content that gets sent to the out route.
+const updatePut = (state={}, action) =>{
+    switch(action.type) {
+        case 'UPDATE_PUT':
+            return action.payload;
+            default:
+                return state;
+    }
+}
+
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movieList,
         genreList,
+        setDescription,
+        updatePut,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

@@ -45,7 +45,7 @@ router.get('/genres', (req, res) => {
     })
 })
 
-// router.put('/details') TODO its not working right now. I need to get the sql text put to work. $
+// router.put('/details') put route updates the title of the moive and its decsription.
 router.put('/details/:id', (req, res) =>{
     console.log('req.params', req.params,'req.body.description', req.body.description,'req.body.title', req.body.title  ) //req.body[{ id: 1, title: 'xzc', description: 'cxv' } make sure that you'll put this in an array
     let update = req.params;

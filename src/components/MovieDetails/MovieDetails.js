@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-    
+
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -15,10 +15,7 @@ const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
     },
-    icon: {
-      margin: theme.spacing.unit,
-      fontSize: 18,
-    },
+   
     myFormStuff: {
       width: '80%',
       margin: 'auto'
@@ -38,7 +35,9 @@ backButton = () =>{
     this.props.history.push('/');
 }
 
+
   render() {
+    const { classes } = this.props;
     console.log (this.props.reduxStore.setDescription)
     let item = this.props.reduxStore.setDescription
     return (
@@ -49,8 +48,8 @@ backButton = () =>{
        <p>Genre: {item.name}</p>
         <p> {item.description}<br/></p>
     </div>
-    <Button onClick={this.backButton}>Back</Button>
-    <Button onClick={this.handleSubmit}>Edit</Button>
+    <Button type="submit" variant="contained" color="secondary" className={classes.button}  onClick={this.backButton}>Back</Button>
+    <Button  type="submit" variant="contained" color="primary"  className={classes.button}  onClick={this.handleSubmit}>Edit</Button>
      </>
     );
    

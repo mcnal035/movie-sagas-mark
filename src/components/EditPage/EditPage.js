@@ -22,10 +22,7 @@ const styles = theme => ({
     button: {
       margin: theme.spacing.unit,
     },
-    icon: {
-      margin: theme.spacing.unit,
-      fontSize: 18,
-    },
+   
     myFormStuff: {
       width: '80%',
       margin: 'auto'
@@ -86,8 +83,8 @@ backButton = () => {
         <p>Title: {item.title}</p>
        <p>Genre: {item.name}</p>
         <p>Description: {item.description}<br/></p>
-        <Button className={classes.button}  onClick={this.backButton}>Cancel</Button>
-        <Button className={classes.button}  onClick={this.handleSubmit}>Save</Button>
+        <Button type="submit" variant="contained" color="secondary" className={classes.button}  onClick={this.backButton}>Cancel</Button>
+        <Button type="submit" variant="contained" color="primary" className={classes.button}  onClick={this.handleSubmit}>Save</Button>
     </div>
      </>
     );

@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { lightBlue, cyan, red } from '@material-ui/core/colors';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 //Routes
 import MovieGallery from '../MovieGallery/MovieGallery'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import EditPage from '../EditPage/EditPage';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: lightBlue,
+    secondary: cyan,
+    error: red,
+  }
+});
 
 class App extends Component {
+
   // Renders the entire app on the DOM
   render() {
     return (
         <>
+        <MuiThemeProvider theme={theme}>
       <Router>
       <div className="App">
        
@@ -23,6 +34,7 @@ class App extends Component {
         <Route path="/edit" component={EditPage} />
       </div>
       </Router>
+      </MuiThemeProvider>
         </>
     );
    

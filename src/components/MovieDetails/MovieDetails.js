@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
 
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+    
 import { connect } from 'react-redux';
+
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+    button: {
+      margin: theme.spacing.unit,
+    },
+    icon: {
+      margin: theme.spacing.unit,
+      fontSize: 18,
+    },
+    myFormStuff: {
+      width: '80%',
+      margin: 'auto'
+    }
+  });
 
 class MovieDetails extends Component {
   // Renders the entire app on the DOM
@@ -21,15 +43,14 @@ backButton = () =>{
     let item = this.props.reduxStore.setDescription
     return (
         <>
-    <button onClick={this.backButton}>Back</button>
-    <button onClick={this.handleSubmit}>Edit</button>
-      
     <div className="App">
-        <p>Details</p>
+        <h2>Details</h2>
         <p>Title: {item.title}</p>
        <p>Genre: {item.name}</p>
-        <p>Description: {item.description}<br/></p>
+        <p> {item.description}<br/></p>
     </div>
+    <Button onClick={this.backButton}>Back</Button>
+    <Button onClick={this.handleSubmit}>Edit</Button>
      </>
     );
    
@@ -40,4 +61,4 @@ const putReduxStoreOnProps = (reduxStore) =>({
   reduxStore
 })
 
-export default connect(putReduxStoreOnProps)(MovieDetails);
+export default withStyles(styles)(connect(putReduxStoreOnProps)(MovieDetails));

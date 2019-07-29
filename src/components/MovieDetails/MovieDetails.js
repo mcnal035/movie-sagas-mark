@@ -24,12 +24,12 @@ const styles = theme => ({
 
 class MovieDetails extends Component {
   // Renders the entire app on the DOM
-
+// lets you go to the next page.
 handleSubmit = () =>{
     console.log('clicked Edit');
     this.props.history.push('/edit');
 }
-
+// lets you go back a page.
 backButton = () =>{
     console.log('clicked back')
     this.props.history.push('/');

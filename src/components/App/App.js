@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 
 class App extends Component {
 
-  // Renders the entire app on the DOM
+  // Renders the entire app on the DOM and it is where the routes are made.
   render() {
     return (
         <>

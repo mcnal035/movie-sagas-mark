@@ -7,11 +7,11 @@ class MovieGallery extends Component {
   state = {
       movieId: '',
   }
-
+// starts the page with movie info rendering to the dom.
   componentDidMount(){
     this.props.dispatch({type:'FETCH_MOVIES'});
   }
-
+ // dispatches the payload id and it sends you to the details page.
   handleClick = (event, id) =>{
     //   console.log('clicked on poster', id);
      this.props.dispatch({type: 'SEND_ID', payload: id})
@@ -27,7 +27,7 @@ class MovieGallery extends Component {
           {
                this.props.reduxStore.movieList.map( item =>
                 <div key={item.id}>
-                <p>{item.title} </p>
+                <h2>{item.title} </h2>
                 <p>{item.description}</p>
                 <img onClick={(event, id) => this.handleClick(event, item.id)} src={item.poster} alt=""/> 
                 </div>

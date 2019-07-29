@@ -31,7 +31,6 @@ const styles = theme => ({
 
 class EditPage extends Component {
     
-  // Renders the entire app on the DOM
   state = {
       newDetails: {    
       title: '',
@@ -39,7 +38,7 @@ class EditPage extends Component {
   
     }
   }
-
+// grbas teh new edits and sets the state.
 handleChange = (event, propToChange) => {
     this.setState({
         newDetails: {
@@ -50,13 +49,13 @@ handleChange = (event, propToChange) => {
     })
 }
  
- 
+// sends the updates to the reducer and was sent to the database. 
 handleSubmit = (event) =>{
     event.preventDefault();
     console.log('clicked Edit');
     this.props.dispatch({ type: 'UPDATE_DETAILS', payload: this.state.newDetails })
 }
-
+// lets you go back.
 backButton = () => {
     console.log('clicked back')
     this.props.history.push('/details');
